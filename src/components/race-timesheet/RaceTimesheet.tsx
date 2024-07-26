@@ -14,12 +14,8 @@ const RaceTimesheet = () => {
 
   useEffect(() => {
     const fetchUpcomingEvent = async () => {
-      const response = await axios.get(
-        // "https://ergast.com/api/f1/current/next.json"
-        "http://api.jolpi.ca/ergast/f1/current/next.json"
-      );
-      const upcoming = response.data.MRData.RaceTable.Races[0];
-      console.log(upcoming);
+      const response = await axios.get("http://10.169.154.6:3000/race/next");
+      const upcoming = response.data;
 
       let tsData = [
         { ...upcoming.FirstPractice, event: "Practice 1" },
@@ -45,11 +41,24 @@ const RaceTimesheet = () => {
   return (
     <div className="w-full p-4 bg-rs-gray-dark text-white rounded-lg ring-1 ring-white/10 col-span-1 md:col-span-2">
       {isLoading ? (
-        <>Loading</>
+        <div className="grid grid-rows-3 gap-2">
+          {[0, 1, 2].map((e) => (
+            <div className="flex gap-4" key={e}>
+              <div className="flex flex-col gap-1 ">
+                <div className="flex animate-pulse">
+                  <div className="bg-white/10 h-5 w-28 rounded-full"></div>
+                </div>
+                <div className="flex animate-pulse">
+                  <div className="bg-white/10 h-4 w-16 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       ) : (
         <div className="grid grid-rows-3">
-          {timesheetData?.slice(0, 3).map((e) => (
-            <div className="flex gap-4">
+          {timesheetData?.slice(0, 3).map((e, index) => (
+            <div className="flex gap-4" key={index}>
               <div className="flex flex-col ">
                 <p className="font-bold">{e.dateTime.getDate()}</p>
                 <p className="text-xs">

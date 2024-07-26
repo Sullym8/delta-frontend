@@ -26,16 +26,8 @@ const DriverCard = () => {
 
   useEffect(() => {
     const fetchUpcomingEvent = async () => {
-      const response = await axios.get(
-        // "https://ergast.com/api/f1/current/driverStandings.json"
-        "http://api.jolpi.ca/ergast/f1/current/driverstandings/?format=json"
-      );
-      setDriverData(
-        response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[
-          Math.floor(Math.random() * 20)
-        ]
-      );
-      console.log(driverData);
+      const response = await axios.get("http://10.169.154.6:3000/driver/sainz");
+      setDriverData(response.data);
       setIsLoading(false);
     };
     fetchUpcomingEvent();
@@ -46,10 +38,10 @@ const DriverCard = () => {
       {isLoading ? (
         <>
           <div className="flex animate-pulse space-x-2 mb-2">
-            <div className="bg-white/25 h-7 w-32 rounded"></div>
+            <div className="bg-white/10 h-7 w-32 rounded-full"></div>
           </div>
           <div className="flex animate-pulse space-x-2 mb-4">
-            <div className="bg-white/10 h-4 w-24 rounded"></div>
+            <div className="bg-white/10 h-4 w-24 rounded-full"></div>
           </div>
           <div className="grid grid-cols-3 text-center w-6/12">
             {[...Array(3)].map((_, index) => {
@@ -58,7 +50,7 @@ const DriverCard = () => {
                   key={index}
                   className="flex justify-center animate-pulse space-x-2 mb-1"
                 >
-                  <div className="bg-white/10 h-5 w-10 rounded"></div>
+                  <div className="bg-white/10 h-8 w-8 rounded-full"></div>
                 </div>
               );
             })}
@@ -94,8 +86,8 @@ const DriverCard = () => {
         </>
       )}
       {isLoading ? (
-        <div className="absolute right-0 top-0 animate-pulse ">
-          <div className="bg-white/25 h-40 w-40 rounded"></div>
+        <div className="absolute right-4 top-4 animate-pulse ">
+          <div className="bg-white/10 h-24 w-32 rounded"></div>
         </div>
       ) : (
         <img

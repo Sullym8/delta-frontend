@@ -12,11 +12,8 @@ const RaceMap = () => {
 
   useEffect(() => {
     const fetchUpcomingEvent = async () => {
-      const response = await axios.get(
-        // "https://ergast.com/api/f1/current/next.json"
-        "http://api.jolpi.ca/ergast/f1/current/next/?format=json"
-      );
-      const upcoming = response.data.MRData.RaceTable.Races[0];
+      const response = await axios.get("http://10.169.154.6:3000/race/next");
+      const upcoming = response.data;
       console.log(upcoming);
       setRaceMapData(upcoming.Circuit.Location);
       setIsLoading(false);

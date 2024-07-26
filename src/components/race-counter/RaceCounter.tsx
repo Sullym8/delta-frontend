@@ -10,8 +10,8 @@ type TimeLeft = {
 
 const RaceCounter = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [raceName, setRaceName] = useState(null);
-  const [round, setRound] = useState(null);
+  const [raceName, setRaceName] = useState<string>("");
+  const [round, setRound] = useState<string>("");
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({});
@@ -33,13 +33,8 @@ const RaceCounter = () => {
 
   useEffect(() => {
     const fetchUpcomingEvent = async () => {
-      // axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";
-      // axios.defaults.withCredentials = false;
-      const response = await axios.get(
-        // "https://ergast.com/api/f1/current/next.json"
-        "http://api.jolpi.ca/ergast/f1/current/next/?format=json"
-      );
-      const upcoming = response.data.MRData.RaceTable.Races[0];
+      const response = await axios.get("http://10.169.154.6:3000/race/next");
+      const upcoming = response.data;
       setRaceName(upcoming.raceName);
       setRound(upcoming.round);
 
@@ -81,7 +76,7 @@ const RaceCounter = () => {
         <div className="flex justify-center">
           {isLoading ? (
             <div className="flex animate-pulse space-x-2 mb-1">
-              <div className="bg-white/25 h-6 w-16 rounded"></div>
+              <div className="bg-white/10 h-6 w-16 rounded-full"></div>
             </div>
           ) : (
             <>
@@ -100,7 +95,7 @@ const RaceCounter = () => {
         </div>
         {isLoading ? (
           <div className="flex animate-pulse space-x-2 mb-1 justify-center">
-            <div className="bg-white/10 h-4 w-8 rounded"></div>
+            <div className="bg-white/10 h-4 w-8 rounded-full"></div>
           </div>
         ) : (
           <p className="text-xs text-center text-gray-50">
@@ -112,7 +107,7 @@ const RaceCounter = () => {
       <div className="bg-rs-green rounded-lg p-2">
         {isLoading || Object.keys(timeLeft).length === 0 ? (
           <div className="flex animate-pulse justify-center">
-            <div className="bg-white/25 h-10 w-full m-2 rounded"></div>
+            <div className="bg-white/10 h-10 w-full m-2 rounded-full"></div>
           </div>
         ) : (
           <div className="grid grid-cols-4 divide-x-2 divide-white/10">

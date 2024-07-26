@@ -37,13 +37,9 @@ const TeamCard = () => {
   useEffect(() => {
     const fetchUpcomingEvent = async () => {
       const response = await axios.get(
-        // "https://ergast.com/api/f1/current/constructorStandings.json"
-        "http://api.jolpi.ca/ergast/f1/current/constructorStandings/?format=json"
+        "http://10.169.154.6:3000/constructor/mercedes"
       );
-      setTeamData(
-        response.data.MRData.StandingsTable.StandingsLists[0]
-          .ConstructorStandings[Math.floor(Math.random() * 10)]
-      );
+      setTeamData(response.data);
     };
     fetchUpcomingEvent();
   }, []);
@@ -52,11 +48,9 @@ const TeamCard = () => {
     console.log(teamData);
     const fetchDrivers = async () => {
       const response = await axios.get(
-        `http://api.jolpi.ca/ergast/f1/current/constructors/${teamData?.Constructor.constructorId}/drivers/?format=json`
-
-        // `https://ergast.com/api/f1/current/constructors/${teamData?.Constructor.constructorId}/drivers.json`
+        "http://10.169.154.6:3000/constructor/mercedes/drivers"
       );
-      setTeamDrivers(response.data.MRData.DriverTable.Drivers);
+      setTeamDrivers(response.data);
       setIsLoading(false);
     };
     fetchDrivers();
@@ -64,23 +58,23 @@ const TeamCard = () => {
 
   return (
     <div
-      className={`w-full p-4 bg-rs-gray-dark text-white rounded-lg ring-1 ring-white/10 relative col-span-2 md:col-span-4 overflow-hidden`}
+      className={`w-full h-40 p-4 bg-rs-gray-dark text-white rounded-lg ring-1 ring-white/10 relative col-span-2 md:col-span-4 overflow-hidden`}
     >
       {isLoading ? (
         <div className="flex flex-row justify-between">
           <div className="flex flex-col gap-2">
             <div className="flex animate-pulse space-x-2">
-              <div className="bg-white/10 h-4 w-32 rounded"></div>
+              <div className="bg-white/10 h-4 w-32 rounded-full"></div>
             </div>
             <div className="flex animate-pulse space-x-2">
-              <div className="bg-white/25 h-9 w-32 rounded"></div>
+              <div className="bg-white/10 h-9 w-32 rounded-full"></div>
             </div>
           </div>
           <div className="text-right flex flex-col gap-2">
             {[...Array(3)].map((_, index) => {
               return (
                 <div key={index} className="animate-pulse">
-                  <div className="bg-white/10 h-10 w-12 rounded"></div>
+                  <div className="bg-white/10 h-8 w-8 rounded-full"></div>
                 </div>
               );
             })}
@@ -121,7 +115,7 @@ const TeamCard = () => {
       )}
       {isLoading ? (
         <div className="absolute left-4 bottom-4 animate-pulse">
-          <div className="bg-white/25 h-16 w-64 rounded"></div>
+          <div className="bg-white/10 h-14 w-64 rounded"></div>
         </div>
       ) : (
         // <></>
