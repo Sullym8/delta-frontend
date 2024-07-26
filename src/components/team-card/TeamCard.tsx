@@ -38,8 +38,7 @@ const TeamCard = () => {
     const fetchUpcomingEvent = async () => {
       const response = await axios.get(
         // "https://ergast.com/api/f1/current/constructorStandings.json"
-
-        "http://api.jolpi.ca/ergast/f1/current/constructorStandings.json"
+        "http://api.jolpi.ca/ergast/f1/current/constructorStandings/?format=json"
       );
       setTeamData(
         response.data.MRData.StandingsTable.StandingsLists[0]
@@ -65,7 +64,7 @@ const TeamCard = () => {
 
   return (
     <div
-      className={`w-full h-40 p-4 bg-rs-gray-dark text-white rounded-lg ring-1 ring-white/10 relative col-span-2 md:col-span-4 overflow-hidden`}
+      className={`w-full p-4 bg-rs-gray-dark text-white rounded-lg ring-1 ring-white/10 relative col-span-2 md:col-span-4 overflow-hidden`}
     >
       {isLoading ? (
         <div className="flex flex-row justify-between">
@@ -134,7 +133,7 @@ const TeamCard = () => {
             ].imageName
           }.png`}
           alt=""
-          className="w-80 absolute left-0 bottom-0"
+          className="h-20 md:h-32 absolute left-0 bottom-0"
         />
       )}
     </div>

@@ -28,7 +28,7 @@ const DriverCard = () => {
     const fetchUpcomingEvent = async () => {
       const response = await axios.get(
         // "https://ergast.com/api/f1/current/driverStandings.json"
-        "http://api.jolpi.ca/ergast/f1/current/driverstandings.json"
+        "http://api.jolpi.ca/ergast/f1/current/driverstandings/?format=json"
       );
       setDriverData(
         response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[
@@ -42,7 +42,7 @@ const DriverCard = () => {
   }, []);
 
   return (
-    <div className="w-full h-40 p-4 bg-rs-gray-dark text-white rounded-lg ring-1 ring-white/10 relative overflow-hidden col-span-2 md:col-span-4">
+    <div className="w-full p-4 bg-rs-gray-dark text-white rounded-lg ring-1 ring-white/10 relative overflow-hidden col-span-2 md:col-span-4">
       {isLoading ? (
         <>
           <div className="flex animate-pulse space-x-2 mb-2">
@@ -68,7 +68,7 @@ const DriverCard = () => {
         <>
           <div className="flex flex-col gap-6 w-7/12">
             <div>
-              <p className="font-bold text-2xl">
+              <p className="font-bold text-xl">
                 {driverData?.Driver.givenName} {driverData?.Driver.familyName}
               </p>
               <p className="text-xs text-gray-50">
@@ -78,15 +78,15 @@ const DriverCard = () => {
             </div>
             <div className="grid grid-cols-3 justify-center text-center">
               <div>
-                <p className="font-bold text-xl">{driverData?.points}</p>
+                <p className="font-bold">{driverData?.points}</p>
                 <p className="text-xs text-gray-50">Points</p>
               </div>
               <div>
-                <p className="font-bold text-xl">{driverData?.wins}</p>
+                <p className="font-bold">{driverData?.wins}</p>
                 <p className="text-xs text-gray-50">Wins</p>
               </div>
               <div>
-                <p className="font-bold text-xl">{driverData?.position}</p>
+                <p className="font-bold">{driverData?.position}</p>
                 <p className="text-xs text-gray-50">Position</p>
               </div>
             </div>

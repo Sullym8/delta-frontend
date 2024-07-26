@@ -33,9 +33,11 @@ const RaceCounter = () => {
 
   useEffect(() => {
     const fetchUpcomingEvent = async () => {
+      // axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";
+      // axios.defaults.withCredentials = false;
       const response = await axios.get(
         // "https://ergast.com/api/f1/current/next.json"
-        "http://api.jolpi.ca/ergast/f1/current/next.json"
+        "http://api.jolpi.ca/ergast/f1/current/next/?format=json"
       );
       const upcoming = response.data.MRData.RaceTable.Races[0];
       setRaceName(upcoming.raceName);
@@ -74,7 +76,7 @@ const RaceCounter = () => {
   }, [endDate]);
 
   return (
-    <div className="w-full h-40 p-4 bg-rs-gray-dark text-white rounded-lg ring-1 ring-white/10 col-span-2 md:col-span-4">
+    <div className="w-full p-4 bg-rs-gray-dark text-white rounded-lg ring-1 ring-white/10 col-span-2 md:col-span-4">
       <div className="mb-2">
         <div className="flex justify-center">
           {isLoading ? (

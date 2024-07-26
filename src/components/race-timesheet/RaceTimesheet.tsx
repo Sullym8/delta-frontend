@@ -22,9 +22,9 @@ const RaceTimesheet = () => {
       console.log(upcoming);
 
       let tsData = [
-        { ...upcoming.FirstPractice, event: "Free Practice 1" },
-        { ...upcoming.SecondPractice, event: "Free Practice 2" },
-        { ...upcoming.ThirdPractice, event: "Free Practice 3" },
+        { ...upcoming.FirstPractice, event: "Practice 1" },
+        { ...upcoming.SecondPractice, event: "Practice 2" },
+        { ...upcoming.ThirdPractice, event: "Practice 3" },
         { ...upcoming.Sprint, event: "Sprint" },
         { ...upcoming.SprintQualifying, event: "Sprint Qualifying" },
         { ...upcoming.Qualifying, event: "Qualifying" },
@@ -47,20 +47,20 @@ const RaceTimesheet = () => {
       {isLoading ? (
         <>Loading</>
       ) : (
-        <div className="flex flex-col gap-2">
-          {timesheetData?.map((e) => (
+        <div className="grid grid-rows-3">
+          {timesheetData?.slice(0, 3).map((e) => (
             <div className="flex gap-4">
               <div className="flex flex-col ">
-                <p className="font-bold text-lg">{e.dateTime.getDate()}</p>
-                <p className="">
+                <p className="font-bold">{e.dateTime.getDate()}</p>
+                <p className="text-xs">
                   {e.dateTime
                     .toLocaleDateString("en-US", { weekday: "short" })
                     .toUpperCase()}
                 </p>
               </div>
               <div className="flex flex-col justify-center">
-                <p className="font-bold text-lg">{e.event}</p>
-                <p className="">
+                <p className="font-bold">{e.event}</p>
+                <p className="text-xs">
                   {e.dateTime.toLocaleTimeString("en-US", {
                     hour: "numeric",
                     minute: "numeric",
