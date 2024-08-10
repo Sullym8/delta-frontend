@@ -1,25 +1,23 @@
-import DriverCard from "./components/driver-card/DriverCard";
+import { Route, Routes } from "react-router-dom";
 import Navigation from "./components/nav/Navigation";
-import RaceCounter from "./components/race-counter/RaceCounter";
-import RaceMap from "./components/race-map/RaceMap";
-import RaceTimesheet from "./components/race-timesheet/RaceTimesheet";
-import TeamCard from "./components/team-card/TeamCard";
+import Dashboard from "./pages/Dashboard";
+import Fantasy from "./pages/Fantasy";
+import supabase from "./config/supabase";
 
 function App() {
+  console.log(supabase);
+
   return (
-    <div>
-      <header className="w-full">
+    <div className="">
+      <nav className="w-full mb-2">
         <Navigation />
-      </header>
+      </nav>
       <main>
-        <div className="container mx-auto px-6 my-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-            <RaceCounter />
-            <DriverCard />
-            <TeamCard />
-            <RaceMap />
-            <RaceTimesheet />
-          </div>
+        <div className="container mx-auto px-4">
+          <Routes>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/fantasy" element={<Fantasy />} />
+          </Routes>
         </div>
       </main>
     </div>
