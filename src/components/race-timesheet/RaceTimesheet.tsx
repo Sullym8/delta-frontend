@@ -14,7 +14,7 @@ const RaceTimesheet = () => {
 
   useEffect(() => {
     const fetchUpcomingEvent = async () => {
-      const response = await axios.get("http://10.169.154.6:3000/race/next");
+      const response = await axios.get("http://localhost:3000/races/next");
       const upcoming = response.data;
 
       let tsData = [

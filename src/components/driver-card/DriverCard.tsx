@@ -1,113 +1,53 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-export type DriverData = {
-  position: number;
-  points: number;
-  wins: number;
-  Driver: {
-    driverId: string;
-    permanentNumber: number;
-    code: string;
-    givenName: string;
-    familyName: string;
-  };
-  Constructors: [
-    {
-      constructorId: string;
-      name: string;
-    }
-  ];
-};
+import React from "react";
+import { MdClose } from "react-icons/md";
 
 const DriverCard = () => {
-  const [driverData, setDriverData] = useState<DriverData | null>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const fetchUpcomingEvent = async () => {
-      const response = await axios.get("http://10.169.154.6:3000/driver/sainz");
-      setDriverData(response.data);
-      setIsLoading(false);
-    };
-    fetchUpcomingEvent();
-  }, []);
-
   return (
-    <div className="w-full p-4 bg-rs-gray-dark text-white rounded-lg ring-1 ring-white/10 relative overflow-hidden col-span-2 md:col-span-4">
-      {isLoading ? (
-        <>
-          <div className="flex animate-pulse space-x-2 mb-2">
-            <div className="bg-white/10 h-7 w-32 rounded-full"></div>
-          </div>
-          <div className="flex animate-pulse space-x-2 mb-4">
-            <div className="bg-white/10 h-4 w-24 rounded-full"></div>
-          </div>
-          <div className="grid grid-cols-3 text-center w-6/12">
-            {[...Array(3)].map((_, index) => {
-              return (
-                <div
-                  key={index}
-                  className="flex justify-center animate-pulse space-x-2 mb-1"
-                >
-                  <div className="bg-white/10 h-8 w-8 rounded-full"></div>
-                </div>
-              );
-            })}
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="flex flex-col gap-6 w-7/12">
-            <div>
-              <p className="font-bold text-xl">
-                {driverData?.Driver.givenName} {driverData?.Driver.familyName}
-              </p>
-              <p className="text-xs text-gray-50">
-                {driverData?.Constructors[0].name} •{" #"}
-                {driverData?.Driver.permanentNumber}
-              </p>
-            </div>
-            <div className="grid grid-cols-3 justify-center text-center">
-              <div>
-                <p className="font-bold">{driverData?.points}</p>
-                <p className="text-xs text-gray-50">Points</p>
-              </div>
-              <div>
-                <p className="font-bold">{driverData?.wins}</p>
-                <p className="text-xs text-gray-50">Wins</p>
-              </div>
-              <div>
-                <p className="font-bold">{driverData?.position}</p>
-                <p className="text-xs text-gray-50">Position</p>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-      {isLoading ? (
-        <div className="absolute right-4 top-4 animate-pulse ">
-          <div className="bg-white/10 h-24 w-32 rounded"></div>
+    <div className="w-[250px] h-[350px] rounded-2xl flex flex-col bg-rs-gray-dark ring-2 ring-[#DE6A10]/10 relative">
+      <div className="absolute -right-2 -top-2 z-10 drop-shadow bg-red-600 rounded-full p-1">
+        <MdClose size={16} />
+      </div>
+      <div className="w-full h-[250px] bg-[#DE6A10] rounded-t-2xl flex flex-col relative p-6 pb-0 overflow-hidden">
+        <div className="text-black">
+          <p className="text-xs">RTG</p>
+          <p className="font-black text-4xl leading-none">84</p>
         </div>
-      ) : (
+        <div className="text-black">
+          <p className="text-xs">RAC</p>
+          <p className="font-black text-3xl leading-none">84</p>
+        </div>
+        <div className="text-black">
+          <p className="text-xs">AWA</p>
+          <p className="font-black text-3xl leading-none">84</p>
+        </div>
+        <div className="text-black">
+          <p className="text-xs">OVE</p>
+          <p className="font-black text-3xl leading-none">84</p>
+        </div>
         <img
-          src={`https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/${driverData?.Driver.givenName
-            .charAt(0)
-            .toUpperCase()}/${driverData?.Driver.givenName
-            .slice(0, 3)
-            .toUpperCase()}${driverData?.Driver.familyName
-            .slice(0, 3)
-            .toUpperCase()}01_${driverData?.Driver.givenName}_${
-            driverData?.Driver.familyName
-          }/${driverData?.Driver.givenName
-            .slice(0, 3)
-            .toLowerCase()}${driverData?.Driver.familyName
-            .slice(0, 3)
-            .toLowerCase()}01.png`}
+          className="w-[210px] absolute right-0 bottom-0 z-10"
+          src="https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANNOR01_Lando_Norris/lannor01.png"
           alt=""
-          className="w-40 absolute right-0 top-0"
         />
-      )}
+        <img
+          className="w-64 absolute -right-24 -top-8 opacity-50"
+          src="src\assets\mclaren.png"
+          alt=""
+        />
+      </div>
+      <div className="flex p-4 bg-gradient-to-b from-[#DE6A10]/10 align-middle">
+        <div className="flex flex-col ">
+          <p className="text-[#DE6A10] font-black text-3xl">Lando Norris</p>
+          <p className="text-[#DE6A10] text-xs">McLaren Racing</p>
+        </div>
+        <div className="flex flex-col items-center text-center">
+          {/* <div>
+            <p className="text-[#DE6A10] text-xs text-end">Driver #14</p>
+          </div> */}
+
+          <p className="text-[#DE6A10] font-black text-6xl text-end">C1</p>
+        </div>
+      </div>
     </div>
   );
 };

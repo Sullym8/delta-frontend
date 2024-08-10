@@ -16,7 +16,7 @@ type TeamDrivers = Array<{
   code: string;
 }>;
 
-const TeamCard = () => {
+const TeamWidget = () => {
   const [teamData, setTeamData] = useState<TeamData | null>();
   const [teamDrivers, setTeamDrivers] = useState<TeamDrivers>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -37,7 +37,7 @@ const TeamCard = () => {
   useEffect(() => {
     const fetchUpcomingEvent = async () => {
       const response = await axios.get(
-        "http://10.169.154.6:3000/constructor/mercedes"
+        "http://localhost:3000/constructors/mercedes"
       );
       setTeamData(response.data);
     };
@@ -48,7 +48,7 @@ const TeamCard = () => {
     console.log(teamData);
     const fetchDrivers = async () => {
       const response = await axios.get(
-        "http://10.169.154.6:3000/constructor/mercedes/drivers"
+        "http://localhost:3000/constructors/mercedes/drivers"
       );
       setTeamDrivers(response.data);
       setIsLoading(false);
@@ -67,7 +67,7 @@ const TeamCard = () => {
               <div className="bg-white/10 h-4 w-32 rounded-full"></div>
             </div>
             <div className="flex animate-pulse space-x-2">
-              <div className="bg-white/10 h-9 w-32 rounded-full"></div>
+              <div className="bg-white/10 h-9 w-28 rounded-full"></div>
             </div>
           </div>
           <div className="text-right flex flex-col gap-2">
@@ -134,4 +134,4 @@ const TeamCard = () => {
   );
 };
 
-export default TeamCard;
+export default TeamWidget;

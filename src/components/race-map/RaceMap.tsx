@@ -12,7 +12,7 @@ const RaceMap = () => {
 
   useEffect(() => {
     const fetchUpcomingEvent = async () => {
-      const response = await axios.get("http://10.169.154.6:3000/race/next");
+      const response = await axios.get("http://localhost:3000/races/next");
       const upcoming = response.data;
       console.log(upcoming);
       setRaceMapData(upcoming.Circuit.Location);
@@ -28,13 +28,13 @@ const RaceMap = () => {
         src="https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Belgium"
         alt=""
       />
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center align-middle">
         <div>
           <p className="font-bold text-xl">{raceMapData?.locality}</p>
           <p className="text-xs">{raceMapData?.country}</p>
         </div>
         <div className="text-right">
-          <p className="font-bold text-xl">72</p>
+          <p className="font-bold">72</p>
           <p className="text-xs">Laps</p>
         </div>
       </div>
