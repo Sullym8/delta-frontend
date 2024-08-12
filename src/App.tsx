@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Navigation from "./components/nav/Navigation";
 import Dashboard from "./pages/Dashboard";
 import Fantasy from "./pages/Fantasy";
+// @ts-expect-error temp
 import supabase from "./config/supabase";
 
 function App() {

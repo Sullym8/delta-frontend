@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 type RaceMapData = {
   locality: string;
@@ -8,7 +8,7 @@ type RaceMapData = {
 
 const RaceMap = () => {
   const [raceMapData, setRaceMapData] = useState<RaceMapData | undefined>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  // const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchUpcomingEvent = async () => {
@@ -16,7 +16,7 @@ const RaceMap = () => {
       const upcoming = response.data;
       console.log(upcoming);
       setRaceMapData(upcoming.Circuit.Location);
-      setIsLoading(false);
+      // setIsLoading(false);
     };
     fetchUpcomingEvent();
   }, []);

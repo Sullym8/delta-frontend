@@ -1,4 +1,3 @@
-import React from "react";
 import DriverWidget from "../components/driver-widget/DriverWidget";
 import RaceCounter from "../components/race-counter/RaceCounter";
 import TeamWidget from "../components/team-widget/TeamWidget";
