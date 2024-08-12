@@ -1,9 +1,11 @@
-import React from "react";
 import { MdClose } from "react-icons/md";
 
 const DriverCard = () => {
   return (
-    <div className="w-[250px] h-[350px] rounded-2xl flex flex-col bg-rs-gray-dark ring-2 ring-[#DE6A10]/10 relative">
+    <div
+      className="w-[250px] h-[350px] rounded-2xl flex flex-col bg-rs-gray-dark ring-2 ring-[#DE6A10]/10 absolute card"
+      style={{ transformOrigin: "bottom-center" }}
+    >
       <div className="absolute -right-2 -top-2 z-10 drop-shadow bg-red-600 rounded-full p-1">
         <MdClose size={16} />
       </div>
@@ -35,16 +37,12 @@ const DriverCard = () => {
           alt=""
         />
       </div>
-      <div className="flex p-4 bg-gradient-to-b from-[#DE6A10]/10 align-middle">
+      <div className="flex p-4 bg-gradient-to-b from-[#DE6A10]/10 items-center">
         <div className="flex flex-col ">
           <p className="text-[#DE6A10] font-black text-3xl">Lando Norris</p>
           <p className="text-[#DE6A10] text-xs">McLaren Racing</p>
         </div>
-        <div className="flex flex-col items-center text-center">
-          {/* <div>
-            <p className="text-[#DE6A10] text-xs text-end">Driver #14</p>
-          </div> */}
-
+        <div className="flex flex-col text-end">
           <p className="text-[#DE6A10] font-black text-6xl text-end">C1</p>
         </div>
       </div>
