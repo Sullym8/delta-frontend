@@ -7,12 +7,13 @@ export default {
         inter: ["Inter", "sans-serif"],
       },
       colors: {
-        "rs-gray-dark": "#15151D",
+        "delta-container-bg": "#09090B",
+        "delta-active": "#15151D",
         "rs-green": "#296144",
         "rs-red-bull": "#161F2E",
         "rs-ferrari-bg": "#D61A1F",
       },
     },
   },
-  plugins: [],
+  plugins: [import("tailwind-scrollbar-hide")],
 };

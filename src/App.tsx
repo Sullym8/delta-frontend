@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className="">
-      <nav className="w-full mb-2">
+      <nav className="w-full">
         <Navigation />
       </nav>
       <main>
