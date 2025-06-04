@@ -1,0 +1,85 @@
+import Pill from "../pill/Pill";
+import { TbCheck, TbClock } from "react-icons/tb";
+import { TbPencil } from "react-icons/tb";
+import { TbFlag } from "react-icons/tb";
+import { useRaceStore } from "../../store/RaceStore";
+
+interface RaceHeaderProps {
+  raceName: string;
+  raceDate: Date;
+  costCap: number;
+  onEdit?: () => void;
+}
+
+interface TimeStatus {
+  text: string;
+  icon?: JSX.Element;
+  editable: boolean;
+}
+
+const getTimeStatus = (raceDate: Date): TimeStatus => {
+  const now = new Date();
+
+  const diff = raceDate.getTime() - now.getTime();
+
+  // Convert to days, hours, minutes
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+  if (hours < -2) {
+    return {
+      text: "Finished",
+      icon: <TbFlag />,
+      editable: false,
+    };
+  } else if (hours < 0) {
+    return {
+      text: "In Progress",
+      editable: false,
+    };
+  }
+  return {
+    text: `${days}d ${hours}h ${minutes}m`,
+    icon: <TbClock />,
+    editable: true,
+  };
+};
+
+const RaceHeader = ({
+  raceName,
+  raceDate,
+  costCap,
+  onEdit,
+}: RaceHeaderProps) => {
+  const isEditing = useRaceStore((state) => state.isEditing);
+
+  const timeStatus = isEditing
+    ? { text: "Editing", icon: <TbPencil />, editable: true }
+    : getTimeStatus(raceDate);
+
+  return (
+    <div className="bg-delta-active rounded-2xl ring-1 ring-white/10 p-4 flex flex-col justify-between gap-2">
+      <div className="flex flex-row justify-between">
+        <h2 className="text-2xl font-bold text-white">{raceName}</h2>
+        <Pill icon={timeStatus.icon} text={timeStatus.text} />
+      </div>
+      <div className="flex flex-row justify-between items-center gap-2">
+        <div className="flex flex-col gap-1">
+          <p className="text-xs ">Cost Cap: ${costCap}M remaining</p>
+          <div className="w-56 h-2 bg-green-600 rounded-full flex-auto" />
+        </div>
+        {timeStatus.editable && (
+          <Pill
+            icon={!isEditing ? <TbPencil /> : <TbCheck />}
+            paddingScale={2}
+            backgroundColor="bg-delta-accent"
+            onClick={onEdit}
+          />
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default RaceHeader;
