@@ -1,4 +1,4 @@
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 interface CardStackProps {
@@ -6,7 +6,7 @@ interface CardStackProps {
   initialIndex?: number;
 }
 
-const CardStack = ({ cards, initialIndex = 2 }: CardStackProps) => {
+const CardStack = ({ cards, initialIndex = 0 }: CardStackProps) => {
   const [selectedIndex, setSelectedIndex] = useState(initialIndex);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
