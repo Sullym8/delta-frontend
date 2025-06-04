@@ -42,15 +42,24 @@ const Fantasy = () => {
             raceDate={new Date(selectedRace.date)}
             costCap={100.0}
             onEdit={toggleEdit}
-            isEditing={isEditing}
           />
           <div className="flex items-center justify-center">
             <CardStack
               cards={[
-                <DriverCard />,
-                <DriverCard />,
-                <DriverCard />,
-                <DriverCard />,
+                <DriverCard
+                  driverName={""}
+                  teamName={""}
+                  rating={0}
+                  race={0}
+                  consistency={0}
+                  reliability={0}
+                  cost={0}
+                  deltaCost={0}
+                  AI_Qualifying={""}
+                  AI_Race={""}
+                  driverImage={""}
+                  teamImage={""}
+                />,
               ]}
             />
             {/* <img src="src\assets\card.png" className="rounded-2xl h-80" /> */}
@@ -63,7 +72,6 @@ const Fantasy = () => {
             raceDate={new Date(selectedRace.date)}
             costCap={100.0}
             onEdit={toggleEdit}
-            isEditing={isEditing}
           />
         </>
       )}
