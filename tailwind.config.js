@@ -4,14 +4,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        inter: ["Inter", "sans-serif"],
+        inter: ["Inter", "Unbounded", "sans-serif"],
       },
       colors: {
         "delta-container-bg": "#09090B",
         "delta-active": "#15151D",
-        "rs-green": "#296144",
-        "rs-red-bull": "#161F2E",
-        "rs-ferrari-bg": "#D61A1F",
+        "delta-accent": "#703DB6",
       },
     },
   },
