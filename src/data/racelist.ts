@@ -58,7 +58,18 @@ export const racelist: Race[] = [
         circuit: "Circuit de Monaco",
         country: "Monaco",
         countryCode: "mc",
-        date: "2023-05-28",
+        date: "2025-05-28",
+        isActive: false,
+    }, 
+
+    {
+        id: 7,
+        round: 7,
+        name: "Canadian Grand Prix",
+        circuit: "Circuit Gilles Villeneuve",
+        country: "Canada",
+        countryCode: "ca",
+        date: "2025-06-15",
         isActive: false,
     }, 
     

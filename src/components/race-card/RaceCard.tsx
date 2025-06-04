@@ -3,7 +3,7 @@ import { Race } from "../../types/race";
 interface RaceCardProps {
   race: Race;
   isSelected: boolean;
-  onSelect: (raceId: number) => void;
+  onSelect: (race: Race) => void;
 }
 
 const RaceCard = ({ race, isSelected, onSelect }: RaceCardProps) => {
@@ -14,7 +14,7 @@ const RaceCard = ({ race, isSelected, onSelect }: RaceCardProps) => {
     : "bg-delta-container-bg";
   return (
     <div
-      onClick={() => onSelect(race.id)}
+      onClick={() => onSelect(race)}
       className={`${baseClasses} ${variableClasses}`}
     >
       <div className="flex flex-row justify-between">
