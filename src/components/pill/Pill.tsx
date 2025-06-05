@@ -53,7 +53,7 @@ const Pill = ({
         )} ${textColor} ${backgroundColor}`}
       >
         {icon && <span className="flex-shrink-0">{icon}</span>}
-        {text && <span className="text-sm font-bold">{text}</span>}
+        {text && <span className="text-sm">{text}</span>}
       </button>
     </div>
   );
