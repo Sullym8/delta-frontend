@@ -59,22 +59,47 @@ const RaceHeader = ({
     : getTimeStatus(raceDate);
 
   return (
-    <div className="bg-delta-active rounded-2xl ring-1 ring-white/10 p-4 flex flex-col justify-between gap-2">
+    <div className="bg-delta-active rounded-2xl ring-1 ring-white/10 p-4 flex flex-col justify-between gap-2 m-0.5">
       <div className="flex flex-row justify-between">
-        <h2 className="text-2xl font-bold text-white">{raceName}</h2>
-        <Pill icon={timeStatus.icon} text={timeStatus.text} />
+        <h2 className="text-2xl font-bold text-white">{`${
+          isEditing ? "My Team -" : ""
+        } ${raceName}`}</h2>
+        {!isEditing && (
+          <Pill icon={timeStatus.icon} text={timeStatus.text} radius="full" />
+        )}
       </div>
-      <div className="flex flex-row justify-between items-center gap-2">
-        <div className="flex flex-col gap-1">
-          <p className="text-xs ">Cost Cap: ${costCap}M remaining</p>
-          <div className="w-56 h-2 bg-green-600 rounded-full flex-auto" />
+      <div className="flex flex-row justify-between items-center">
+        <div className={`flex flex-col ${timeStatus.editable ? "gap-1" : ""} `}>
+          <div className="w-44 ">
+            {timeStatus.editable ? (
+              <>
+                <span className="text-xs">Cost: </span>
+                <span className="font-black">${costCap}M</span>
+              </>
+            ) : (
+              <span className="text-xs">Deck Score</span>
+            )}
+          </div>
+          {timeStatus.editable ? (
+            <div className="h-2 bg-green-600 rounded-full flex-auto" />
+          ) : (
+            <span className="text-lg font-black font-[Unbounded]">
+              +124 pts
+            </span>
+          )}
         </div>
-        {timeStatus.editable && (
+        {timeStatus.editable ? (
           <Pill
-            icon={!isEditing ? <TbPencil /> : <TbCheck />}
+            icon={!isEditing ? <TbPencil size={20} /> : <TbCheck size={20} />}
             paddingScale={2}
             backgroundColor="bg-delta-accent"
             onClick={onEdit}
+          />
+        ) : (
+          <Pill
+            text="View Breakdown"
+            paddingScale={2}
+            backgroundColor="bg-delta-accent"
           />
         )}
       </div>
