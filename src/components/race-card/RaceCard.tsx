@@ -8,7 +8,7 @@ interface RaceCardProps {
 
 const RaceCard = ({ race, isSelected, onSelect }: RaceCardProps) => {
   const baseClasses =
-    "p-4 flex flex-col justify-between ring-1 w-44 rounded-2xl flex-shrink-0 ring-white/10 transition-all duration-200 ease-in-out";
+    "box-border m-0.5 p-4 flex flex-col justify-between ring-1 w-44 rounded-2xl flex-shrink-0 ring-white/10 transition-all duration-200 ease-in-out";
   const variableClasses = isSelected
     ? "bg-delta-active"
     : "bg-delta-container-bg";
@@ -25,7 +25,7 @@ const RaceCard = ({ race, isSelected, onSelect }: RaceCardProps) => {
           alt="Bahrain"
           className="self-center"
         />
-        <p className="text-xs font-black">{`R${race.round}`}</p>
+        <p className="text-xs ">{`R${race.round}`}</p>
       </div>
       <p className="text-2xl font-black truncate">{race.country}</p>
       <p className="text-xs">03 Mar - 05 Mar</p>
