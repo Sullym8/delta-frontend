@@ -22,34 +22,7 @@ const CardStack = ({ cards, initialIndex = 0 }: CardStackProps) => {
         cards.length - 1
       );
       setSelectedIndex(newIndex);
-      // await controls.set({ x: direction * 250 });
-      // controls.start({ x: 0, opacity: 1 });
-      // } else {
-      //   window.alert("You are at the edge of the stack!"); // Alert if at edge
-      //   controls.start({
-      //     x: 0,
-      //     transition: {
-      //       type: "spring",
-      //       bounce: 0.5,
-      //       duration: 0.5,
-      //       stiffness: 400,
-      //       damping: 10,
-      //     },
-      //   }); // Reset position if at edge
-      // }
     }
-    // else {
-    //   controls.start({
-    //     x: 0,
-    //     transition: {
-    //       type: "spring",
-    //       bounce: 0.5,
-    //       duration: 0.5,
-    //       stiffness: 400,
-    //       damping: 10,
-    //     },
-    //   }); // Reset if swipe wasn't strong enough
-    // }
   };
 
   return (
@@ -98,7 +71,7 @@ const CardStack = ({ cards, initialIndex = 0 }: CardStackProps) => {
         );
       })}
 
-      <div className="absolute -bottom-8 left-0 right-0 flex justify-center gap-2">
+      <div className="absolute -bottom-0 left-0 right-0 flex justify-center gap-2">
         {cards.map((_, index) => (
           <button
             key={index}
