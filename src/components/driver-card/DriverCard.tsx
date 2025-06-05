@@ -31,7 +31,7 @@ const DriverCard = ({
   teamImage = "src/assets/mclaren.png",
 }: DriverCardProps) => {
   return (
-    <div className="w-[250px] h-[350px] rounded-2xl flex flex-col bg-delta-container-bg ring-2 ring-[#DE6A10]/10 ">
+    <div className="w-[250px] h-[325px] rounded-2xl flex flex-col bg-delta-container-bg ring-2 ring-[#FFF]/10 ">
       <div className="absolute z-30 top-4 right-4">
         <Pill
           icon={<TbSparkles color="#EFBF04" />}
@@ -92,9 +92,9 @@ const DriverCard = ({
           />
         </div>
       </div>
-      <div className="flex p-4 bg-gradient-to-b from-[#DE6A10]/10 items-center">
+      <div className="h-[75px] flex p-4 bg-gradient-to-b from-[#DE6A10]/10 to-delta-active items-center rounded-b-2xl">
         <div className="flex flex-col ">
-          <p className="text-[#DE6A10] font-black text-3xl">{driverName}</p>
+          <p className="text-[#DE6A10] font-black text-2xl">{driverName}</p>
           <p className="text-[#DE6A10] text-xs">{teamName}</p>
         </div>
       </div>
