@@ -8,6 +8,7 @@ import CardStack from "../components/card-stack/CardStack";
 import DriverCard from "../components/driver-card/DriverCard";
 import DriverCardMini from "../components/driver-card-mini/DriverCardMini";
 import DriverSelector from "../components/driver-selector/DriverSelector";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Fantasy = () => {
   const [races] = useState<Race[]>(racelist);
@@ -49,8 +50,14 @@ const Fantasy = () => {
             <CardStack
               cards={selectedDrivers.map((driver) => (
                 <DriverCard
+                  driver={driver}
                   key={driver.driverCode}
-                  driverName={driver.driverName}
+                  rating={0}
+                  race={0}
+                  consistency={0}
+                  reliability={0}
+                  AI_Qualifying={""}
+                  AI_Race={""}
                 />
               ))}
             />
@@ -66,13 +73,23 @@ const Fantasy = () => {
             onEdit={toggleEdit}
           />
           <div className="flex flex-row overflow-x-auto no-scrollbar justify-start gap-2">
-            {selectedDrivers.map((driver) => (
-              <DriverCardMini
-                key={driver.driverCode}
-                driverCode={driver.driverCode}
-                deleteDriver={removeDriver}
-              />
-            ))}
+            <AnimatePresence>
+              {selectedDrivers.map((driver, index) => (
+                <motion.div
+                  key={driver.driverCode}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{
+                    duration: 0.2,
+                    delay: index * 0.05, // Stagger the animations
+                    ease: "easeInOut",
+                  }}
+                >
+                  <DriverCardMini driver={driver} removeDriver={removeDriver} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
           <DriverSelector />
         </>
