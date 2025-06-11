@@ -59,7 +59,7 @@ const RaceHeader = ({
     : getTimeStatus(raceDate);
 
   return (
-    <div className="bg-delta-active rounded-2xl ring-1 ring-white/10 p-4 flex flex-col justify-between gap-2 m-0.5">
+    <div className="bg-delta-active rounded-2xl ring-1 ring-white/10 p-4 flex flex-col justify-between gap-2 m-0.5 ">
       <div className="flex flex-row justify-between">
         <h2 className="text-2xl font-bold text-white">{`${
           isEditing ? "My Team -" : ""
@@ -68,7 +68,7 @@ const RaceHeader = ({
           <Pill icon={timeStatus.icon} text={timeStatus.text} radius="full" />
         )}
       </div>
-      <div className="flex flex-row justify-between items-center">
+      <div className="flex flex-row justify-between items-center h-10">
         <div className={`flex flex-col ${timeStatus.editable ? "gap-1" : ""} `}>
           <div className="w-44 ">
             {timeStatus.editable ? (
