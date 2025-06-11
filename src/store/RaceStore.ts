@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { Race } from "../types/race";
 import { racelist } from "../data/racelist";
 import { Driver } from "../types/driver";
+import { driverlist } from "../data/driverlist";
 
 interface RaceState {
     selectedRace: Race;
@@ -14,26 +15,7 @@ interface RaceState {
     clearDrivers: () => void;
 }
 
-const selectedDrivers = [
-    {
-        driverCode: 'NOR',
-        cost: 32.4,
-        driverName: 'Lando Norris',
-        teamName: 'McLaren Racing'
-    },
-    {
-        driverCode: 'LEC',
-        cost: 35.0,
-        driverName: 'Charles Leclerc',
-        teamName: 'Scuderia Ferrari'
-    }, 
-    {
-        driverCode: 'VER',
-        cost: 40.0,
-        driverName: 'Max Verstappen',
-        teamName: 'Red Bull Racing'
-    }
-]
+const selectedDrivers : Driver[] = driverlist;
 
 export const useRaceStore = create<RaceState>((set) => ({
     selectedRace: racelist[0],
@@ -49,5 +31,6 @@ export const useRaceStore = create<RaceState>((set) => ({
         set((state) => ({
             selectedDrivers: state.selectedDrivers.filter(d => d.driverCode !== driverCode)
         })),
-    clearDrivers: () => set({ selectedDrivers: [] })
+    clearDrivers: () => set({ selectedDrivers: [] }),
+
 }))
