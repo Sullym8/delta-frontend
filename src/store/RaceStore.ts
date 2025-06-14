@@ -2,7 +2,6 @@ import { create } from "zustand";
 import { Race } from "../types/race";
 import { racelist } from "../data/racelist";
 import { Driver } from "../types/driver";
-import { driverlist } from "../data/driverlist";
 
 interface RaceState {
     selectedRace: Race;
@@ -15,7 +14,7 @@ interface RaceState {
     clearDrivers: () => void;
 }
 
-const selectedDrivers : Driver[] = driverlist;
+const selectedDrivers : Driver[] = [];
 
 export const useRaceStore = create<RaceState>((set) => ({
     selectedRace: racelist[0],

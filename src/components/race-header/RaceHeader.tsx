@@ -3,11 +3,11 @@ import { TbCheck, TbClock } from "react-icons/tb";
 import { TbPencil } from "react-icons/tb";
 import { TbFlag } from "react-icons/tb";
 import { useRaceStore } from "../../store/RaceStore";
+import CostCap from "../cost-cap/CostCap";
 
 interface RaceHeaderProps {
   raceName: string;
   raceDate: Date;
-  costCap: number;
   onEdit?: () => void;
 }
 
@@ -46,17 +46,18 @@ const getTimeStatus = (raceDate: Date): TimeStatus => {
   };
 };
 
-const RaceHeader = ({
-  raceName,
-  raceDate,
-  costCap,
-  onEdit,
-}: RaceHeaderProps) => {
+const RaceHeader = ({ raceName, raceDate, onEdit }: RaceHeaderProps) => {
   const isEditing = useRaceStore((state) => state.isEditing);
 
   const timeStatus = isEditing
     ? { text: "Editing", icon: <TbPencil />, editable: true }
     : getTimeStatus(raceDate);
+
+  const selectedDrivers = useRaceStore((state) => state.selectedDrivers);
+  const totalCost = selectedDrivers.reduce(
+    (total, driver) => total + driver.cost,
+    0
+  );
 
   return (
     <div className="bg-delta-active rounded-2xl ring-1 ring-white/10 p-4 flex flex-col justify-between gap-2 m-0.5 ">
@@ -74,14 +75,14 @@ const RaceHeader = ({
             {timeStatus.editable ? (
               <>
                 <span className="text-xs">Cost: </span>
-                <span className="font-black">${costCap}M</span>
+                <span className="font-black">${totalCost.toFixed(1)}M</span>
               </>
             ) : (
               <span className="text-xs">Deck Score</span>
             )}
           </div>
           {timeStatus.editable ? (
-            <div className="h-2 bg-green-600 rounded-full flex-auto" />
+            <CostCap />
           ) : (
             <span className="text-lg font-black font-[Unbounded]">
               +124 pts
@@ -89,12 +90,22 @@ const RaceHeader = ({
           )}
         </div>
         {timeStatus.editable ? (
-          <Pill
-            icon={!isEditing ? <TbPencil size={20} /> : <TbCheck size={20} />}
-            paddingScale={2}
-            backgroundColor="bg-delta-accent"
-            onClick={onEdit}
-          />
+          totalCost <= 100 ? (
+            <Pill
+              icon={!isEditing ? <TbPencil size={20} /> : <TbCheck size={20} />}
+              paddingScale={2}
+              backgroundColor="bg-delta-accent"
+              onClick={onEdit}
+            />
+          ) : (
+            <>
+              <Pill
+                paddingScale={2}
+                backgroundColor="bg-delta-container"
+                text="Over Budget"
+              />
+            </>
+          )
         ) : (
           <Pill
             text="View Breakdown"
