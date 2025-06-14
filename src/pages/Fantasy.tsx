@@ -67,7 +67,7 @@ const Fantasy = () => {
       ) : (
         <>
           <RaceHeader
-            raceName={`${selectedRace.country} GP` || "Select a race"}
+            raceName={`${selectedRace.country}` || "Select a race"}
             raceDate={new Date(selectedRace.date)}
             costCap={100.0}
             onEdit={toggleEdit}

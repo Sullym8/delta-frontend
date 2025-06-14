@@ -61,8 +61,8 @@ const RaceHeader = ({
   return (
     <div className="bg-delta-active rounded-2xl ring-1 ring-white/10 p-4 flex flex-col justify-between gap-2 m-0.5 ">
       <div className="flex flex-row justify-between">
-        <h2 className="text-2xl font-bold text-white">{`${
-          isEditing ? "My Team -" : ""
+        <h2 className="text-2xl font-black font-[Unbounded]">{`${
+          isEditing ? "My Fantasy:" : ""
         } ${raceName}`}</h2>
         {!isEditing && (
           <Pill icon={timeStatus.icon} text={timeStatus.text} radius="full" />

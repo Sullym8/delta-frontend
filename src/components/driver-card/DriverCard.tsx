@@ -69,7 +69,7 @@ const DriverCard = ({
           alt=""
         />
         <img
-          className="w-64 absolute -right-24 -top-8 opacity-50"
+          className="absolute -right-1/4 h-full object-contain opacity-50"
           src={driver.teamImage}
           alt=""
         />

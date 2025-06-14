@@ -25,10 +25,12 @@ const RaceCard = ({ race, isSelected, onSelect }: RaceCardProps) => {
           alt="Bahrain"
           className="self-center"
         />
-        <p className="text-xs ">{`R${race.round}`}</p>
+        <p className="font-black font-[Unbounded]">{`R${race.round}`}</p>
       </div>
-      <p className="text-2xl font-black truncate">{race.country}</p>
-      <p className="text-xs">03 Mar - 05 Mar</p>
+      <p className="text-2xl font-black truncate font-[Unbounded]">
+        {race.country}
+      </p>
+      <p className="text-xs ">03 Mar - 05 Mar</p>
     </div>
   );
 };

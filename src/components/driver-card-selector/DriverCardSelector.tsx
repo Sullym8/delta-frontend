@@ -36,15 +36,15 @@ const DriverCardSelector = ({ driver }: DriverCardSelectorProps) => {
               backgroundColor: driver.colors.main,
               color: driver.colors.accent,
             }}
-            className="h-20 rounded-t-xl flex relative pt-1 justify-center"
+            className="h-20 rounded-t-xl flex relative pt-1 justify-center overflow-hidden items-center"
           >
             <img
-              className="object-contain z-10"
+              className="h-full w-full object-contain z-10"
               src={driver.driverImage}
               alt=""
             />
             <img
-              className="absolute h-24 opacity-50"
+              className="absolute h-3/4 w-3/4 object-contain opacity-50"
               src={driver.teamImage}
               alt=""
             />

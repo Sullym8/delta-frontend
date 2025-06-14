@@ -11,7 +11,7 @@ const DriverCardMini = ({ driver, removeDriver }: DriverCardProps) => {
     <div className="w-[140px] h-[120px] rounded-xl flex flex-col bg-delta-container-bg ring-1 ring-[#FFF]/10 flex-shrink-0 m-0.5 relative">
       <div
         style={{ background: driver.colors.main }}
-        className="w-full h-2/3 rounded-t-xl flex flex-col relative overflow-hidden pt-1"
+        className="w-full h-2/3 rounded-t-xl flex flex-col relative overflow-hidden pt-1 justify-center items-center"
       >
         <img
           className="h-full w-full object-contain flex-shrink-0 flex-grow-0 z-10"
@@ -19,7 +19,7 @@ const DriverCardMini = ({ driver, removeDriver }: DriverCardProps) => {
           alt=""
         />
         <img
-          className="w-full absolute -top-5 opacity-50 "
+          className="w-3/4 h-3/4 object-contain absolute opacity-50 "
           src={driver.teamImage}
           alt=""
         />
