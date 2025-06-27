@@ -37,7 +37,7 @@ const CardStack = ({ cards, initialIndex = 0 }: CardStackProps) => {
               key={index}
               className="absolute w-full h-full origin-bottom"
               animate={{
-                scale: 1 - Math.abs(offset) * 0.1,
+                scale: 1.1 - Math.abs(offset) * 0.1,
                 filter: `brightness(${
                   isSelected ? 1 : 0.8 - Math.abs(offset) * 0.1
                 })`,
@@ -56,7 +56,7 @@ const CardStack = ({ cards, initialIndex = 0 }: CardStackProps) => {
                 right: index === 0 ? 0 : 0.5,
               }}
               dragMomentum={false}
-              whileDrag={{ scale: 0.95 }}
+              whileDrag={{ scale: 1.0 }}
               onDragEnd={isSelected ? handleDragEnd : undefined}
               transition={{
                 type: "spring",
