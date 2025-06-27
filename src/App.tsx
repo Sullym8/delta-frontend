@@ -9,12 +9,12 @@ function App() {
   console.log(supabase);
 
   return (
-    <div className="">
+    <div className="h-dvh">
       <nav className="w-full">
         <Navigation />
       </nav>
-      <main>
-        <div className="container mx-auto px-4">
+      <main className="h-[calc(100dvh-7rem)]">
+        <div className="container mx-auto px-4 h-full">
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
