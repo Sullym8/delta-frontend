@@ -9,6 +9,7 @@ interface RaceHeaderProps {
   raceName: string;
   raceDate: Date;
   onEdit?: () => void;
+  onViewBreakdown?: () => void;
 }
 
 interface TimeStatus {
@@ -46,7 +47,12 @@ const getTimeStatus = (raceDate: Date): TimeStatus => {
   };
 };
 
-const RaceHeader = ({ raceName, raceDate, onEdit }: RaceHeaderProps) => {
+const RaceHeader = ({
+  raceName,
+  raceDate,
+  onEdit,
+  onViewBreakdown,
+}: RaceHeaderProps) => {
   const isEditing = useRaceStore((state) => state.isEditing);
 
   const timeStatus = isEditing
@@ -60,22 +66,31 @@ const RaceHeader = ({ raceName, raceDate, onEdit }: RaceHeaderProps) => {
   );
 
   return (
-    <div className="bg-delta-active rounded-2xl ring-1 ring-white/10 p-4 flex flex-col justify-between gap-2 m-0.5 ">
+    <div className="bg-delta-active rounded-2xl ring-1 ring-white/10 p-4 flex flex-col flex-none justify-between gap-2.5 m-0.5 ">
       <div className="flex flex-row justify-between">
-        <h2 className="text-2xl font-black font-[Unbounded]">{`${
-          isEditing ? "My Fantasy:" : ""
-        } ${raceName}`}</h2>
+        <h2 className="text-2xl font-black font-[Unbounded] truncate">{`${raceName} ${
+          isEditing ? "Fantasy" : ""
+        }`}</h2>
         {!isEditing && (
-          <Pill icon={timeStatus.icon} text={timeStatus.text} radius="full" />
+          <Pill
+            paddingScale={2}
+            icon={timeStatus.icon}
+            text={timeStatus.text}
+            radius="full"
+          />
         )}
       </div>
       <div className="flex flex-row justify-between items-center h-10">
-        <div className={`flex flex-col ${timeStatus.editable ? "gap-1" : ""} `}>
+        <div
+          className={`flex flex-col ${timeStatus.editable ? "gap-1.5" : ""} `}
+        >
           <div className="w-44 ">
             {timeStatus.editable ? (
               <>
-                <span className="text-xs">Cost: </span>
-                <span className="font-black">${totalCost.toFixed(1)}M</span>
+                <span className="text-xs">Budget Left: </span>
+                <span className="font-black">
+                  ${(100.0 - totalCost).toFixed(1)}M
+                </span>
               </>
             ) : (
               <span className="text-xs">Deck Score</span>
@@ -96,6 +111,7 @@ const RaceHeader = ({ raceName, raceDate, onEdit }: RaceHeaderProps) => {
               paddingScale={2}
               backgroundColor="bg-delta-accent"
               onClick={onEdit}
+              text={!isEditing ? "Edit" : ""}
             />
           ) : (
             <>
@@ -111,6 +127,7 @@ const RaceHeader = ({ raceName, raceDate, onEdit }: RaceHeaderProps) => {
             text="View Breakdown"
             paddingScale={2}
             backgroundColor="bg-delta-accent"
+            onClick={onViewBreakdown}
           />
         )}
       </div>
