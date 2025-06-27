@@ -1,18 +1,26 @@
 import { motion, PanInfo } from "framer-motion";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface BottomSheetProps {
   children?: React.ReactNode;
   baseHeightRatio: number;
   expandedHeightRatio: number;
+  externalIsExpanded?: boolean;
+  onExpandChange?: (isExpanded: boolean) => void;
 }
 
 const BottomSheet = ({
   children,
   baseHeightRatio,
   expandedHeightRatio,
+  externalIsExpanded = false,
+  onExpandChange,
 }: BottomSheetProps) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(externalIsExpanded);
+
+  useEffect(() => {
+    setIsExpanded(externalIsExpanded);
+  }, [externalIsExpanded]);
 
   const halfHeight = window.innerHeight * baseHeightRatio;
   const expandedHeight = window.innerHeight * expandedHeightRatio;
@@ -20,6 +28,7 @@ const BottomSheet = ({
   const handleDragEnd = (_: never, info: PanInfo) => {
     const draggedUp = info.offset.y < 0;
     setIsExpanded(draggedUp);
+    onExpandChange?.(draggedUp);
   };
 
   return (
@@ -49,7 +58,7 @@ const BottomSheet = ({
         onDragEnd={handleDragEnd}
       >
         <div className="w-full flex justify-center p-4">
-          <div className="w-12 h-1.5 bg-white/20 rounded-full" />
+          <div className="w-12 h-1 bg-white/20 rounded-full" />
         </div>
       </motion.div>
       <div
