@@ -5,7 +5,7 @@ export const driverlist: Driver[] = [
     driverCode: 'PIA',
     driverName: 'Oscar Piastri',
     teamName: 'McLaren Racing',
-    cost: 32.1,
+    cost: 25.2,
     deltaCost: 0.6,
     driverImage: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/O/OSCPIA01_Oscar_Piastri/oscpia01.png',
     teamImage: 'src/assets/mclaren.avif',
@@ -19,7 +19,7 @@ export const driverlist: Driver[] = [
     driverCode: 'NOR',
     driverName: 'Lando Norris',
     teamName: 'McLaren Racing',
-    cost: 32.1,
+    cost: 31.0,
     deltaCost: 0.6,
     driverImage: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANNOR01_Lando_Norris/lannor01.png',
     teamImage: 'src/assets/mclaren.avif',
@@ -33,7 +33,7 @@ export const driverlist: Driver[] = [
     driverCode: 'VER',
     driverName: 'Max Verstappen',
     teamName: 'Red Bull Racing',
-    cost: 32.1,
+    cost: 29.2,
     deltaCost: 0.6,
     driverImage: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png',
     teamImage: 'src/assets/redbull.avif',
@@ -47,7 +47,7 @@ export const driverlist: Driver[] = [
     driverCode: 'LEC',
     driverName: 'Charles Leclerc',
     teamName: 'Scuderia Ferrari',
-    cost: 35.0,
+    cost: 24.3,
     deltaCost: 0.5,
     driverImage: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png',
     teamImage: 'src/assets/ferrari.avif',
@@ -62,7 +62,7 @@ export const driverlist: Driver[] = [
     driverCode: 'ALO',
     driverName: 'Fernando Alonso',
     teamName: 'Aston Martin',
-    cost: 35.0,
+    cost: 5.1,
     deltaCost: 0.5,
     driverImage: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/F/FERALO01_Fernando_Alonso/feralo01.png',
     teamImage: 'src/assets/aston_martin.avif',
@@ -75,7 +75,7 @@ export const driverlist: Driver[] = [
     driverCode: 'SAI',
     driverName: 'Carlos Sainz',
     teamName: 'Williams Racing',
-    cost: 35.0,
+    cost: 8.3,
     deltaCost: 0.5,
     driverImage: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CARSAI01_Carlos_Sainz/carsai01.png',
     teamImage: 'src/assets/williams.avif',
@@ -88,20 +88,21 @@ export const driverlist: Driver[] = [
     driverCode: 'RUS',
     driverName: 'George Russell',
     teamName: 'Mercedes-AMG Petronas',
-    cost: 35.0,
+    cost: 22.0,
     deltaCost: 0.5,
     driverImage: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/G/GEORUS01_George_Russell/georus01.png',
     teamImage: 'src/assets/mercedes.avif',
     colors : {
         main: '#00d7b7', // Mercedes Teal
-        accent: '#FFFFFF', // White for text highlights
+        accent: '#000000', // White for text highlights
+        secondary: '#FFFFFF' // White for text highlights
     }
   }, 
   {
     driverCode: 'LAW',
     driverName: 'Liam Lawson',
     teamName: 'Racing Bulls',
-    cost: 35.0,
+    cost: 4.8,
     deltaCost: 0.5,
     driverImage: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LIALAW01_Liam_Lawson/lialaw01.png',
     teamImage: 'src/assets/vcarb.avif',
@@ -115,7 +116,7 @@ export const driverlist: Driver[] = [
     driverCode: 'BEA',
     driverName: 'Oliver Bearman',
     teamName: 'Haas F1 Team',
-    cost: 35.0,
+    cost: 6.7,
     deltaCost: 0.5,
     driverImage: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/O/OLIBEA01_Oliver_Bearman/olibea01.png',
     teamImage: 'src/assets/haas.avif',
@@ -129,13 +130,26 @@ export const driverlist: Driver[] = [
     driverCode: 'GAS',
     driverName: 'Pierre Gasly',
     teamName: 'Alpine F1 Team',
-    cost: 35.0,
+    cost: 5.8,
     deltaCost: 0.5,
     driverImage: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/P/PIEGAS01_Pierre_Gasly/piegas01.png',
     teamImage: 'src/assets/alpine.avif',
     colors : {
         accent: '#FF87BC', // Alpine Blue
         main: '#061A4D', // White for text highlights
+    }
+  },
+    {
+    driverCode: 'HUL',
+    driverName: 'Nico Hülkenberg',
+    teamName: 'Kick Sauber',
+    cost: 7.2,
+    deltaCost: 0.5,
+    driverImage: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/N/NICHUL01_Nico_Hulkenberg/nichul01.png',
+    teamImage: 'src/assets/kick_sauber.avif',
+    colors : {
+        main: '#07C00F', // Alpine Blue
+        accent: '#00000', // White for text highlights
     }
   }
 ];

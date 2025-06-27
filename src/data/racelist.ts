@@ -72,5 +72,16 @@ export const racelist: Race[] = [
         date: "2025-06-15",
         isActive: false,
     }, 
+
+    {
+      id: 8,
+      round: 8,
+      name: "Austrian Grand Prix",
+      circuit: "Red Bull Ring",
+      country: "Austria",
+      countryCode: "at",
+      date: "2025-06-29",
+      isActive: false,
+    }
     
 ];
