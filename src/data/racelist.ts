@@ -9,7 +9,6 @@ export const racelist: Race[] = [
     country: "Bahrain",
     countryCode: "bh",
     date: "2023-03-05",
-    isActive: true,
   },
   {
     id: 2,
@@ -19,7 +18,6 @@ export const racelist: Race[] = [
     country: "Saudi Arabia",
     countryCode: "sa",
     date: "2023-03-19",
-    isActive: false,
   },
   {
     id: 3,
@@ -29,7 +27,6 @@ export const racelist: Race[] = [
     country: "Australia",
     countryCode: "au",
     date: "2023-04-02",
-    isActive: false,
   },
     {
         id: 4,
@@ -39,7 +36,6 @@ export const racelist: Race[] = [
         country: "Azerbaijan",
         countryCode: "az",
         date: "2023-04-30",
-        isActive: false,
     },
     {
         id: 5,
@@ -49,7 +45,6 @@ export const racelist: Race[] = [
         country: "United States",
         countryCode: "us",
         date: "2023-05-07",
-        isActive: false,
     },
     {
         id: 6,
@@ -59,7 +54,6 @@ export const racelist: Race[] = [
         country: "Monaco",
         countryCode: "mc",
         date: "2025-05-28",
-        isActive: false,
     }, 
 
     {
@@ -70,7 +64,6 @@ export const racelist: Race[] = [
         country: "Canada",
         countryCode: "ca",
         date: "2025-06-15",
-        isActive: false,
     }, 
 
     {
@@ -81,7 +74,6 @@ export const racelist: Race[] = [
       country: "Austria",
       countryCode: "at",
       date: "2025-06-29",
-      isActive: false,
     }
     
 ];
