@@ -13,6 +13,21 @@ const RaceCard = ({ race, isSelected, onSelect }: RaceCardProps) => {
   const variableClasses = isSelected
     ? "bg-delta-active"
     : "bg-delta-container-bg";
+
+  const endDate = new Date(race.date);
+  const startDate = new Date(race.date);
+
+  startDate.setDate(endDate.getDate() - 2);
+
+  const formattedEndDate = endDate.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
+
+  const formattedStartDate = startDate.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
   return (
     <motion.div whileTap={{ scale: 0.95 }}>
       <div
@@ -36,7 +51,7 @@ const RaceCard = ({ race, isSelected, onSelect }: RaceCardProps) => {
           <p className="text-2xl font-black truncate font-[Unbounded]">
             {race.country}
           </p>
-          <p className="text-xs ">03 Mar - 05 Mar</p>
+          <p className="text-xs ">{`${formattedStartDate} - ${formattedEndDate}`}</p>
         </div>
       </div>
     </motion.div>
