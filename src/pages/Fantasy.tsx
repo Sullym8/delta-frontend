@@ -30,7 +30,9 @@ const Fantasy = () => {
     const fetchRaces = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:8000/api/races/upto");
+        const response = await fetch(
+          "https://delta-backend-wj7b.onrender.com/api/races/upto"
+        );
         const races = await response.json();
         setRaces(races);
 

@@ -69,7 +69,9 @@ const DriverSelector = () => {
     const fetchDrivers = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:8000/api/drivers");
+        const response = await fetch(
+          "https://delta-backend-wj7b.onrender.com/api/drivers"
+        );
         const drivers = await response.json();
         setDrivers(drivers);
         setSortedDrivers(drivers);
