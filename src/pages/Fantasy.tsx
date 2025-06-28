@@ -1,8 +1,7 @@
 import RaceCard from "../components/race-card/RaceCard";
 import { useRaceStore } from "../store/RaceStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Race } from "../types/race";
-import { racelist } from "../data/racelist";
 import RaceHeader from "../components/race-header/RaceHeader";
 import CardStack from "../components/card-stack/CardStack";
 import DriverCard from "../components/driver-card/DriverCard";
@@ -13,7 +12,10 @@ import { TbArrowBigDownLine } from "react-icons/tb";
 import BreakdownModal from "../components/breakdown-modal/BreakdownModal";
 
 const Fantasy = () => {
-  const [races] = useState<Race[]>(racelist);
+  // const [races] = useState<Race[]>(racelist);
+  const [races, setRaces] = useState<Race[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const {
     selectedRace,
@@ -23,6 +25,27 @@ const Fantasy = () => {
     toggleEdit,
     removeDriver,
   } = useRaceStore();
+
+  useEffect(() => {
+    const fetchRaces = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("http://localhost:8000/api/races/upto");
+        const races = await response.json();
+        setRaces(races);
+
+        if (races.length > 0) {
+          selectRace(races[0]);
+        }
+      } catch (err) {
+        setError("Failed to fetch races");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRaces();
+  }, [selectRace]);
 
   const handleSelectRace = (race: Race) => {
     selectRace(race);
@@ -44,17 +67,14 @@ const Fantasy = () => {
         {!isEditing ? (
           <>
             <div className="flex flex-row overflow-x-auto no-scrollbar justify-start gap-2.5 flex-shrink-0">
-              {races
-                .slice(0)
-                .reverse()
-                .map((race) => (
-                  <RaceCard
-                    key={race.id}
-                    race={race}
-                    isSelected={race.id === selectedRace.id}
-                    onSelect={handleSelectRace}
-                  />
-                ))}
+              {races.map((race) => (
+                <RaceCard
+                  key={race.id}
+                  race={race}
+                  isSelected={race.id === selectedRace.id}
+                  onSelect={handleSelectRace}
+                />
+              ))}
             </div>
             <div className="flex-shrink-0">
               <RaceHeader
