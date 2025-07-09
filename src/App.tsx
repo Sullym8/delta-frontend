@@ -9,7 +9,7 @@ import supabase from "./config/supabase";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 function AuthenticatedApp() {
-  const { user, loading, signOut } = useAuth();
+  const { user, loading } = useAuth();
 
   if (loading) {
     return (
