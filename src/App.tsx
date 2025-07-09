@@ -2,11 +2,28 @@ import { Route, Routes } from "react-router-dom";
 import Navigation from "./components/nav/Navigation";
 import Dashboard from "./pages/Dashboard";
 import Fantasy from "./pages/Fantasy";
-// @ts-expect-error temp
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import AuthCallback from "./pages/AuthCallback";
+import { Auth } from "@supabase/auth-ui-react";
 import supabase from "./config/supabase";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 
-function App() {
-  console.log(supabase);
+function AuthenticatedApp() {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-full">Loading...</div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+      </div>
+    );
+  }
 
   return (
     <div className="h-dvh">
@@ -19,10 +36,19 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/fantasy" element={<Fantasy />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
           </Routes>
         </div>
       </main>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AuthenticatedApp />
+    </AuthProvider>
   );
 }
 

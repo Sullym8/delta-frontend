@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import BottomSheet from "../bottom-sheet/BottomSheet";
 import DriverCardSelector from "../driver-card-selector/DriverCardSelector";
 import { Driver } from "../../types/driver";
-import { TbArrowsSort } from "react-icons/tb";
+import { TbArrowsSort, TbCheck } from "react-icons/tb";
 
 type SortOption = "a-z" | "z-a" | "cost-low" | "cost-high";
 
@@ -31,7 +31,7 @@ const SortPopup = ({
   return (
     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
       <div className="bg-delta-container-bg rounded-2xl ring-1 ring-white/10 p-4 m-4 w-full max-w-sm">
-        <div className="space-y-2">
+        <div className="flex flex-col gap-2">
           {sortOptions.map((option) => (
             <button
               key={option.value}
@@ -39,7 +39,7 @@ const SortPopup = ({
                 onSort(option.value);
                 onClose();
               }}
-              className={`w-full text-left p-4 rounded-lg transition-colors ${
+              className={`flex items-center justify-between w-full text-left p-4 rounded-lg transition-colors ${
                 currentSort === option.value
                   ? "bg-delta-active ring-1 ring-white/10"
                   : "bg-delta-container-bg ring-1 ring-white/5"
@@ -47,7 +47,7 @@ const SortPopup = ({
             >
               {option.label}
               {currentSort === option.value && (
-                <span className="float-right text-delta-accent">✓</span>
+                <TbCheck className="text-delta-accent" size={20} />
               )}
             </button>
           ))}

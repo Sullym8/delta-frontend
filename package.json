@@ -10,7 +10,9 @@
     "preview": "vite preview --host"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.45.1",
+    "@supabase/auth-ui-react": "^0.4.7",
+    "@supabase/auth-ui-shared": "^0.1.8",
+    "@supabase/supabase-js": "^2.50.3",
     "axios": "^1.7.2",
     "framer-motion": "^12.15.0",
     "react": "^18.3.1",
