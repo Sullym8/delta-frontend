@@ -2,7 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { TbLogout } from "react-icons/tb";
 import { useEffect, useRef, useState } from "react";
-import { a } from "framer-motion/client";
 
 const Navigation = () => {
   const location = useLocation();
