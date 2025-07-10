@@ -23,7 +23,6 @@ const Fantasy = () => {
     selectedRace,
     isEditing,
     selectedDrivers,
-    isLoading: fantasyLoading,
     selectRace,
     toggleEdit,
     removeDriver,
