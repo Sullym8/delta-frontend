@@ -6,4 +6,5 @@ export interface Race {
   country: string;
   countryCode: string;
   date: string;
+  year: number;
 }

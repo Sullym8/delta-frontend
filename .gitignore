@@ -12,6 +12,7 @@ dist
 dist-ssr
 dev-dist
 *.local
+src/assets/drivers/*
 
 # Editor directories and files
 .vscode/*
@@ -26,3 +27,4 @@ dev-dist
 
 # Environment variables
 .env
+

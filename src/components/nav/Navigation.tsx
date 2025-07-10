@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { TbLogout } from "react-icons/tb";
 import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navigation = () => {
   const location = useLocation();
@@ -77,53 +78,59 @@ const Navigation = () => {
               </div>
             )}
           </div>
-          {showPopover && (
-            <div
-              ref={popoverRef}
-              className="absolute top-10 right-0 w-64 bg-delta-container-bg rounded-xl shadow-lg ring-1 ring-white/10 p-3 z-50"
-            >
-              <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-3 pb-2 border-b border-white/10">
-                  <div className="w-10 h-10">
-                    {avatarUrl ? (
-                      <img
-                        src={avatarUrl}
-                        alt="Profile"
-                        className="w-full h-full rounded-full object-cover ring-1 ring-white/10"
-                      />
-                    ) : (
-                      <div className="w-full h-full rounded-full bg-delta-active flex items-center justify-center ring-1 ring-white/10">
-                        <span>
-                          {(
-                            user.user_metadata?.name?.[0] ||
-                            user.email?.[0] ||
-                            "U"
-                          ).toUpperCase()}
-                        </span>
-                      </div>
-                    )}
+          <AnimatePresence>
+            {showPopover && (
+              <motion.div
+                ref={popoverRef}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="absolute top-10 right-0 w-64 bg-delta-container-bg rounded-xl shadow-lg ring-1 ring-white/10 p-3 z-50"
+              >
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-3 pb-2 border-b border-white/10">
+                    <div className="w-10 h-10">
+                      {avatarUrl ? (
+                        <img
+                          src={avatarUrl}
+                          alt="Profile"
+                          className="w-full h-full rounded-full object-cover ring-1 ring-white/10"
+                        />
+                      ) : (
+                        <div className="w-full h-full rounded-full bg-delta-active flex items-center justify-center ring-1 ring-white/10">
+                          <span>
+                            {(
+                              user.user_metadata?.name?.[0] ||
+                              user.email?.[0] ||
+                              "U"
+                            ).toUpperCase()}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium">
+                        {user.user_metadata?.name || user.email?.split("@")[0]}
+                      </p>
+                      <p className="text-xs text-white/60">{user.email}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm font-medium">
-                      {user.user_metadata?.name || user.email?.split("@")[0]}
-                    </p>
-                    <p className="text-xs text-white/60">{user.email}</p>
-                  </div>
-                </div>
 
-                <button
-                  onClick={() => {
-                    signOut();
-                    setShowPopover(false);
-                  }}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors text-sm"
-                >
-                  <TbLogout size={16} />
-                  <span>Sign out</span>
-                </button>
-              </div>
-            </div>
-          )}
+                  <button
+                    onClick={() => {
+                      signOut();
+                      setShowPopover(false);
+                    }}
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors text-sm"
+                  >
+                    <TbLogout size={16} />
+                    <span>Sign out</span>
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       )}
       <div className="flex flex-row text-xs justify-center gap-2">

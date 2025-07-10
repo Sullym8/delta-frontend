@@ -10,12 +10,14 @@ import DriverSelector from "../components/driver-selector/DriverSelector";
 import { AnimatePresence, motion } from "framer-motion";
 import { TbArrowBigDownLine } from "react-icons/tb";
 import BreakdownModal from "../components/breakdown-modal/BreakdownModal";
+import { useAuth } from "../context/AuthContext";
 
 const Fantasy = () => {
   // const [races] = useState<Race[]>(racelist);
   const [races, setRaces] = useState<Race[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { user } = useAuth();
 
   const {
     selectedRace,
@@ -24,6 +26,8 @@ const Fantasy = () => {
     selectRace,
     toggleEdit,
     removeDriver,
+    loadFantasyForRace,
+    saveFantasyForRace,
   } = useRaceStore();
 
   useEffect(() => {
@@ -49,6 +53,24 @@ const Fantasy = () => {
     fetchRaces();
   }, [selectRace]);
 
+  // Load fantasy data when race changes or user changes
+  useEffect(() => {
+    if (user && selectedRace) {
+      loadFantasyForRace(user.id, selectedRace.year, selectedRace.round);
+    }
+  }, [user, selectedRace, loadFantasyForRace]);
+
+  // Auto-save fantasy when drivers change (debounced)
+  useEffect(() => {
+    if (!user || !selectedRace || selectedDrivers.length === 0) return;
+
+    const timeoutId = setTimeout(() => {
+      saveFantasyForRace(user.id, selectedRace.year, selectedRace.round);
+    }, 2000); // Save after 2 seconds of no changes
+
+    return () => clearTimeout(timeoutId);
+  }, [user, selectedRace, selectedDrivers, saveFantasyForRace]);
+
   const handleSelectRace = (race: Race) => {
     selectRace(race);
   };
@@ -66,7 +88,10 @@ const Fantasy = () => {
   return (
     <>
       <div className="flex flex-col gap-2.5 h-full">
-        {loading && <div className="text-center py-4">Loading drivers...</div>}
+        {loading && <div className="text-center py-4">Loading races...</div>}
+        {/* {fantasyLoading && (
+          <div className="text-center py-4">Loading fantasy data...</div>
+        )} */}
         {error && <div className="text-center py-4 text-red-500">{error}</div>}
         {!loading &&
           !error &&
